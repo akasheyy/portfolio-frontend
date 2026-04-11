@@ -70,7 +70,7 @@ const FeaturedProjects = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project} onShowMore={() => alert('Full description: ' + (project.description || 'No description available'))} />
                 </motion.div>
               ))}
             </div>
@@ -100,7 +100,7 @@ const FeaturedProjects = () => {
   );
 };
 
-export const ProjectCard = ({ project }) => (
+export const ProjectCard = ({ project, onShowMore }: { project: any; onShowMore?: () => void }) => (
   <div className="card-gradient border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all hover:glow-shadow group hover:scale-[1.02] duration-300">
 
     {/* Image */}
@@ -121,6 +121,16 @@ export const ProjectCard = ({ project }) => (
       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
         {project.description}
       </p>
+
+      {/* Show More Button */}
+      {onShowMore && (
+        <button
+          onClick={onShowMore}
+          className="text-xs text-primary/80 hover:text-primary font-medium flex items-center gap-1 mb-4 group"
+        >
+          Show more <span className="group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+      )}
 
       {/* Tech Stack */}
       <div className="flex flex-wrap gap-2 mb-4">
