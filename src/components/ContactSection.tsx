@@ -4,14 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { submitContact } from "@/services/api.js";
+import { useTransition } from "react";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isPending, startTransition] = useTransition();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    startTransition(async () => {
+      try {
+        await submitContact(formData);
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } catch (error) {
+        toast.error(typeof error === "string" ? error : "Failed to send message. Please try again.");
+      }
+    });
   };
 
   return (
@@ -79,8 +89,8 @@ const ContactSection = () => {
               required
               className="bg-secondary border-border focus:border-primary resize-none"
             />
-            <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2">
-              <Send className="w-4 h-4" /> Send Message
+            <Button type="submit" disabled={isPending} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2">
+              <Send className={`w-4 h-4 ${isPending ? "animate-pulse" : ""}`} /> {isPending ? "Sending..." : "Send Message"}
             </Button>
           </form>
         </div>

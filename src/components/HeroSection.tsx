@@ -21,8 +21,7 @@ const HeroSection = () => {
           MERN Stack Developer
         </h2>
         <p className="max-w-xl mx-auto text-muted-foreground mb-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          I build modern, scalable web applications using MongoDB, Express.js, React, and Node.js. 
-          Passionate about clean code and great user experiences.
+          I build modern, scalable web applications using MongoDB, Express.js, React, and Node.js. Passionate about clean code and great user experiences.
         </p>
 
         <div className="flex items-center justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: "0.4s" }}>
