@@ -34,7 +34,7 @@ const Footer = () => (
 
         {/* Instagram Icon */}
         <a 
-          href="https://www.instagram.com/aka.sheyyy_?igsh=MWEzcTBrZHVjdzFjMA==" 
+          href="https://www.instagram.com/im.aaka.shh_?igsh=MXd1azRlM2Vjejh0dw==" 
           target="_blank" 
           rel="noreferrer" 
           className="text-muted-foreground hover:text-primary transition-colors"
